@@ -1,13 +1,24 @@
 {
-    "builds": [{
+    "version": 2,
+    "builds": [
+      {
         "src": "EsordioApp/wsgi.py",
         "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.11.0" }
-    }],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "EsordioApp/wsgi.py"
+        "config": {
+          "maxLambdaSize": "15mb",
+          "runtime": "python3.11.0"
         }
+      }
+    ],
+    "routes": [
+      {
+        "src": "^/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "EsordioApp/wsgi.py"
+      }
     ]
-}
+  }
+  
